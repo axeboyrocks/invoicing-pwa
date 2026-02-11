@@ -18,6 +18,8 @@ export type Show = {
   updatedAt: number; // epoch ms
   status: "Draft" | "Closed";
   hstRate: number; // 0.13 for 13%
+  googleSheetId?: string;
+  googleSheetUrl?: string;
 };
 
 export type TimeEntry = {
@@ -70,7 +72,7 @@ class InvoiceDB extends Dexie {
   constructor() {
     super("invoicing_pwa_db");
 
-    this.version(2).stores({
+    this.version(3).stores({
       shows: "id, status, createdAt, updatedAt, clientName",
       timeEntries: "id, showId, date, createdAt",
       expenses: "id, showId, date, createdAt",

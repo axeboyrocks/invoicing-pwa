@@ -20,6 +20,7 @@ export default function ShowDetailPage() {
       clientName: show.clientName,
       jobNumber: show.jobNumber,
       hstRate: show.hstRate,
+      googleSheetId: show.googleSheetId,
     },
     timeEntries: timeEntries || [],
     expenses: expenses || [],
@@ -36,6 +37,12 @@ export default function ShowDetailPage() {
     alert("Sync failed: " + data.error);
     return;
   }
+
+  await db.shows.update(show.id, {
+    googleSheetId: data.spreadsheetId,
+    googleSheetUrl: data.url,
+    updatedAt: Date.now(),
+  });
 
   alert("Synced to Google Sheets ✅");
 }
