@@ -44,7 +44,8 @@ export default function ShowDetailPage() {
     updatedAt: Date.now(),
   });
 
-  alert("Synced to Google Sheets ✅");
+  alert("Synced ✅ Opening new invoice sheet…");
+  if (data.url) window.open(data.url, "_blank");
 }
 
 
